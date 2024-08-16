@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export default function ThemeSwitch() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
+  const [theme, setTheme] = useState("light");
 
   return (
     <button
@@ -10,7 +10,6 @@ export default function ThemeSwitch() {
       onClick={() => {
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
-        localStorage.setItem("theme", newTheme);
 
         if (theme === "light") {
           document?.querySelector("html")?.classList.add("dark");
