@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const router = useRouter();
@@ -13,6 +13,12 @@ export default function Page() {
     // Add your login logic here
     router.push("/");
   };
+
+  useEffect(() => {
+    // Prefetching is not enabled in development, only in production.
+    // Prefetch the posts page
+    router.prefetch("/posts");
+  }, [router]);
 
   return (
     <div className="flex justify-center items-center mt-5">

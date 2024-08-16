@@ -18,6 +18,7 @@ export default function AuthNavLinks() {
               "font-bold": pathname === "/auth/login",
             })}
             href="/auth/login"
+            prefetch
           >
             Login
           </Link>
@@ -30,6 +31,16 @@ export default function AuthNavLinks() {
             href="/auth/register"
           >
             Register
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={clsx({
+              "font-bold": pathname === "/posts",
+            })}
+            href="/posts"
+          >
+            Posts
           </Link>
         </li>
         <li>

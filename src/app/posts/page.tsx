@@ -15,6 +15,7 @@ export default async function page() {
         >
           <Link
             href={`/posts/${post.id}-${post.title.replaceAll(" ", "-")}`}
+            scroll={false}
             className="overflow-hidden"
           >
             <p

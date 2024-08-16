@@ -4,7 +4,9 @@ const host = process?.env.HOST;
 const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
 
 export const fetchPosts = async () => {
-  const posts = await fetch(`${protocal}://${host}/api/posts`).then((res) => {
+  const posts = await fetch(`${protocal}://${host}/api/posts`, {
+    next: { revalidate: 144 * 60 },
+  }).then((res) => {
     return res.json();
   });
 
