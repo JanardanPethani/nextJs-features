@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- [Layouts vs Templates](#layouts-vs-templates)
+    - [Opt for layouts to:](#opt-for-layouts-to)
+    - [Choose templates when you need:](#choose-templates-when-you-need)
+- [New topic](#new-topic)
 
-## Getting Started
+## Layouts vs Templates
 
-First, run the development server:
+#### Opt for layouts to:
+- Ensure consistency. Use layouts to provide a uniform appearance and behavior across your application. They are ideal for common elements like headers and footers.
+- Maintain state. Layouts are beneficial for their ability to hold state and behaviors that should be persistent during navigation, such as user login status.
+- Boost performance. They minimize re-renders and streamline state management, which can lead to performance improvements.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+#### Choose templates when you need:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Isolation. Templates are useful when components should not share state or behaviors, as they re-mount and re-render upon navigation.
+Behavioral flexibility. If you need to trigger certain effects or state changes every time a user navigates to a component, templates provide this capability. For instance, they're suitable for:
+- Tracking page views with useEffect.
+- Collecting feedback with a useState managed form that's unique to each page.
+- To alter default behaviors. Templates can modify how certain features work within your framework. For example, they can control the display of fallback UIs in Suspense Boundaries during page transitions, which layouts cannot do.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[Blog: Layouts vs Templates](https://www.builder.io/blog/nextjs-14-layouts-templates) 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+----------
+## New topic
