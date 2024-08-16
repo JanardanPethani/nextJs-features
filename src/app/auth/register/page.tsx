@@ -1,19 +1,17 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+
+import { login } from "@/app/actions/auth";
+import FormSubmit from "./_components/FormSubmit";
 
 export default function RegisterPage() {
   const router = useRouter();
 
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Add your register logic here
-    router.push("/");
-  };
+  // For React 18 -> useFormState
+  // For React 19 -> useActionState
+  const [state, formAction] = useFormState(login, { message: "" });
 
   useEffect(() => {
     // Prefetching is not enabled in development, only in production.
@@ -24,7 +22,7 @@ export default function RegisterPage() {
   return (
     <div className="flex justify-center items-center mt-5">
       <form
-        onSubmit={handleSubmit}
+        action={formAction}
         className="bg-white dark:bg-slate-600 p-4 rounded shadow-md w-2/3 md:w-1/2 md:max-w-[520px]"
       >
         <h2 className="text-2xl font-bold mb-4">Register</h2>
@@ -35,9 +33,8 @@ export default function RegisterPage() {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
             id="name"
+            name="name"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="mb-4">
@@ -47,9 +44,8 @@ export default function RegisterPage() {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
             id="email"
+            name="email"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-4">
@@ -59,17 +55,15 @@ export default function RegisterPage() {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
             id="password"
+            name="password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Register
-        </button>
+        <p aria-live="polite" className="py-1 text-rose-600 text-sm">
+          {state?.message}
+        </p>
+
+        <FormSubmit />
       </form>
     </div>
   );
